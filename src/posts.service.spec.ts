@@ -13,10 +13,20 @@ describe('PostsService', () => {
   });
 
   it('should add a new post', () => {
-    // реализуйте тест-кейс
+    const newPost: Omit<Post, 'id' | 'date'> = {
+      text: 'New post',
+    };
+    const createdPost = postsService.create(newPost);
+    expect(createdPost.text).toEqual(newPost.text);
+    expect(postsService['posts']).toContain(createdPost);
   });
 
   it('should find a post', () => {
-    // реализуйте тест-кейс
+    const newPost: Omit<Post, 'id' | 'date'> = {
+      text: 'New post',
+    };
+    const createdPost = postsService.create(newPost);
+    const foundPost = postsService.find(createdPost.id);
+    expect(foundPost).toEqual(createdPost);
   });
 });
